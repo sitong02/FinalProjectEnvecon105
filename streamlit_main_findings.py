@@ -113,5 +113,49 @@ with tab9:
     - China Overtakes: By the 2000s, China surpassed the U.S. and became the largest global emitter, while U.S. and European emissions stabilized or declined.
     - Global Impact: China’s emissions trajectory is now the main driver of worldwide CO₂ growth, making it central to future climate outcomes.
     """)
+# -----------------------------
+# Per-capita CO₂ Rankings
+# -----------------------------
+with st.tab("Per-capita Rankings"):
+    st.subheader(f"Top 10 CO₂ Emitters per Capita — {max_year}")
+
+    # pick a year (use same slider as before or new one)
+    year_pc = st.slider(
+        "Select year for per-capita ranking",
+        min_value=min_year, max_value=max_year,
+        value=max_year
+    )
+
+    d_pc = co2[co2["year"] == year_pc].copy()
+    # filter out world aggregates & very small populations
+    if "iso_code" in d_pc.columns:
+        d_pc = d_pc[~d_pc["iso_code"].isin(["OWID_WRL","OWID_KOS"])]
+    if "population" in d_pc.columns:
+        d_pc = d_pc[d_pc["population"] > 1e6]
+
+    d_pc = d_pc.dropna(subset=["co2_per_capita"])
+    top_pc = d_pc.nlargest(10, "co2_per_capita")[["country","co2_per_capita"]]
+
+    col1, col2 = st.columns([2,1])
+    with col1:
+        fig, ax = plt.subplots()
+        ax.barh(top_pc["country"][::-1], top_pc["co2_per_capita"][::-1])
+        ax.set_xlabel("Tonnes per person")
+        ax.set_ylabel("Country")
+        ax.set_title(f"Top 10 Per-capita CO₂ Emitters — {year_pc}")
+        st.pyplot(fig)
+    with col2:
+        st.dataframe(
+            top_pc.rename(columns={"country":"Country","co2_per_capita":"Tonnes/person"})
+                   .style.format({"Tonnes/person":"{:.2f}"}),
+            use_container_width=True
+        )
+
+    st.markdown("""
+    **Key Takeaways:**
+    - China ranks **lower per-capita** than its absolute emissions, showing the difference between population size and intensity.
+    - Oil-rich and smaller high-income countries (e.g., Qatar, Kuwait) dominate the per-capita list.
+    - This highlights the **equity debate**: large populations vs. lifestyle emissions.
+    """)
 
 
