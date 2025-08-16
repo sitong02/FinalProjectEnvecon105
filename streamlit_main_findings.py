@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Main Findings Dashboard", layout="wide")
 
-st.title("Main Findings Dashboard")
-st.caption("A concise, presentation-ready dashboard showing only the key results from the case study (Sections 8–10).")
+st.title("Main Findings Dashboard-China and the Global Rise of CO₂ Emissions")
+st.caption("A concise, presentation-ready dashboard showing only the key results from the case study .")
 
 # -----------------------------
 # Data (default: OWID CO₂)
@@ -42,13 +42,13 @@ co2["year"] = co2["year"].astype(int)
 # filters (limited to keep it 'findings-only')
 min_year, max_year = int(co2["year"].min()), int(co2["year"].max())
 default_focus = "China" if "China" in set(co2["country"]) else co2["country"].iloc[0]
-year_for_rank = st.slider("Select ranking year (used in Sections 8 & 9 visualizations)", min_value=min_year, max_value=max_year, value=min(2014, max_year))
+year_for_rank = st.slider("Select ranking year", min_value=min_year, max_value=max_year, value=min(2014, max_year))
 
 # Tabs correspond to key findings sections only
-tab8, tab9, tab10 = st.tabs(["Section 8: Top Emitters", "Section 9: Trends (Highlight)", "Section 10: Per-capita Rankings"])
+tab8, tab9 = st.tabs(["Section 8: Top Emitters", "Section 9: Trends (Highlight)"])
 
 # -----------------------------
-# Section 8 — Top Emitters (Absolute CO2)
+# Top Emitters (Absolute CO2)
 # -----------------------------
 with tab8:
     st.subheader(f"Top 10 CO₂ Emitters — {year_for_rank}")
@@ -74,10 +74,11 @@ with tab8:
 
     st.markdown("""
     **Section 8 — Key Takeaways:**
-    - Emissions are concentrated among a small set of countries.
-    - Note any notable outliers or changes vs. previous years.
+    - In early years (1800s–1900s), CO₂ emissions were dominated by Europe, North America, and other high-income regions, while China’s contribution was very small.
+    - By the mid-20th century, the U.S. was still a leading emitter, but China began to rise gradually.
+    - After the late 20th century and especially post-2000, China’s emissions accelerated sharply, overtaking the U.S. and becoming the largest absolute emitter in the world.
+    - This shift highlights China’s rapid industrialization and reliance on coal, making it the central driver of recent global CO₂ growth.
     """)
-
 # -----------------------------
 # Section 9 — Trends Over Time
 # -----------------------------
@@ -106,9 +107,10 @@ with tab9:
 
     st.markdown("""
     **Section 9 — Key Takeaways (edit this text):**
-    - Describe long‑run trend (e.g., steady increase/decrease, structural break).
-    - Compare the highlighted country vs. peers: earlier peak? faster growth?
-    - Note policy or economic events that align with inflection points.
+    - Historical Leaders: From the 18th to mid-20th century, CO₂ emissions were dominated by Europe and North America, with China barely visible.
+    - Rapid Growth: Starting in the late 20th century, China’s emissions rose sharply — a steep curve compared to other countries — reflecting fast industrialization and coal dependence.
+    - China Overtakes: By the 2000s, China surpassed the U.S. and became the largest global emitter, while U.S. and European emissions stabilized or declined.
+    - Global Impact: China’s emissions trajectory is now the main driver of worldwide CO₂ growth, making it central to future climate outcomes.
     """)
 
 
