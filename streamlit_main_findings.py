@@ -45,7 +45,9 @@ default_focus = "China" if "China" in set(co2["country"]) else co2["country"].il
 
 
 # Tabs correspond to key findings sections only
-tab8, tab9 = st.tabs(["Top Emitters", "CO₂ Emissions-China Highlighted"])
+tab8, tab9, tab10 = st.tabs(
+    ["Top Emitters", "CO₂ Emissions — China Highlighted", "Per-capita Rankings"]
+)
 
 # -----------------------------
 # Top Emitters (Absolute CO2)
