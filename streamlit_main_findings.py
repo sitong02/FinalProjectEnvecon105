@@ -73,14 +73,14 @@ with tab8:
         st.dataframe(top.rename(columns={"country":"Country","co2":"CO₂ (Mt)"}).style.format({"CO₂ (Mt)":"{:.0f}"}), use_container_width=True)
 
     st.markdown("""
-    **Section 8 — Key Takeaways:**
+    **Key Takeaways:**
     - In early years (1800s–1900s), CO₂ emissions were dominated by Europe, North America, and other high-income regions, while China’s contribution was very small.
     - By the mid-20th century, the U.S. was still a leading emitter, but China began to rise gradually.
     - After the late 20th century and especially post-2000, China’s emissions accelerated sharply, overtaking the U.S. and becoming the largest absolute emitter in the world.
     - This shift highlights China’s rapid industrialization and reliance on coal, making it the central driver of recent global CO₂ growth.
     """)
 # -----------------------------
-# Section 9 — Trends Over Time
+# Trends Over Time
 # -----------------------------
 with tab9:
     st.subheader("CO₂ Emissions Over Time — China")
@@ -106,7 +106,7 @@ with tab9:
     st.pyplot(fig, clear_figure=True)
 
     st.markdown("""
-    **Section 9 — Key Takeaways (edit this text):**
+    **Key Takeaways:**
     - Historical Leaders: From the 18th to mid-20th century, CO₂ emissions were dominated by Europe and North America, with China barely visible.
     - Rapid Growth: Starting in the late 20th century, China’s emissions rose sharply — a steep curve compared to other countries — reflecting fast industrialization and coal dependence.
     - China Overtakes: By the 2000s, China surpassed the U.S. and became the largest global emitter, while U.S. and European emissions stabilized or declined.
