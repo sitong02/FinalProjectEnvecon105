@@ -42,7 +42,7 @@ co2["year"] = co2["year"].astype(int)
 # filters (limited to keep it 'findings-only')
 min_year, max_year = int(co2["year"].min()), int(co2["year"].max())
 default_focus = "China" if "China" in set(co2["country"]) else co2["country"].iloc[0]
-year_for_rank = st.slider("Select ranking year", min_value=min_year, max_value=max_year, value=min(2014, max_year))
+
 
 # Tabs correspond to key findings sections only
 tab8, tab9 = st.tabs(["Top Emitters", "CO2 Emissions-China Highlighted"])
@@ -51,6 +51,7 @@ tab8, tab9 = st.tabs(["Top Emitters", "CO2 Emissions-China Highlighted"])
 # Top Emitters (Absolute CO2)
 # -----------------------------
 with tab8:
+    year_for_rank = st.slider("Select ranking year", min_value=min_year, max_value=max_year, value=min(2014, max_year))
     st.subheader(f"Top 10 CO₂ Emitters — {year_for_rank}")
     d = co2[co2["year"] == year_for_rank].copy()
     d = d[~d["country"].str.contains("World|International", case=False, na=False)]
