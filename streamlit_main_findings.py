@@ -45,7 +45,7 @@ default_focus = "China" if "China" in set(co2["country"]) else co2["country"].il
 year_for_rank = st.slider("Select ranking year", min_value=min_year, max_value=max_year, value=min(2014, max_year))
 
 # Tabs correspond to key findings sections only
-tab8, tab9 = st.tabs(["Top Emitters", "co2 Emission-China"])
+tab8, tab9 = st.tabs(["Top Emitters", "CO2 Emissions-China Highlighted"])
 
 # -----------------------------
 # Top Emitters (Absolute CO2)
