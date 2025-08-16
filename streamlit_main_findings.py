@@ -112,6 +112,3 @@ with tab9:
     """)
 
 
-**Notes for submission**  
-- This dashboard only includes the main findings (Sections 8–9).  
-- The full methodology, wrangling, and additional figures remain in the `.ipynb`.  
